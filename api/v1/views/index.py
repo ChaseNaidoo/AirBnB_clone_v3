@@ -23,7 +23,7 @@ def get_stats():
         "users": "User"
     }
 
-    stats_dict = {key: storage.count(class_name) for key,
+    stats_dict = {key: storage.count(class_name.lower()) for key,
                   class_name in classes.items()}
 
     return jsonify(stats_dict)

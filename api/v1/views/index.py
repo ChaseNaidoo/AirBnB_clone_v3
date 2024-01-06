@@ -14,13 +14,15 @@ def status():
 @app_views.route('/stats', methods=['GET'])
 def get_stats():
     """Retrieve the number of each object by type"""
-    stats = {
-        "amenities": storage.count("Amenity"),
-        "cities": storage.count("City"),
-        "places": storage.count("Place"),
-        "reviews": storage.count("Review"),
-        "states": storage.count("State"),
-        "users": storage.count("User")
+    model_mapping = {
+        "amenities": "Amenity",
+        "cities": "City",
+        "places": "Place",
+        "reviews": "Review",
+        "states": "State",
+        "users": "User"
     }
+    model_counts = {mapped_name: storage.count(model) for model,
+                    mapped_name in model_mapping.items()}
 
-    return jsonify(stats)
+    return jsonify(model_counts)

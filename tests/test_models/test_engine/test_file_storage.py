@@ -117,11 +117,12 @@ class TestFileStorage(unittest.TestCase):
     @unittest.skipIf(models.storage_t == 'db', "not testing file storage")
     def test_get(self):
         """Test that get retrieves one object"""
+        storage = FileStorage()
         user = User(name="User1")
         models.storage.new(user)
         models.storage.save()
         result = models.storage.get(User, user.id)
-        self.assertEqual(result, user, "get method did not return the expected object")
+        self.assertEqual(result, user)
 
     @unittest.skipIf(models.storage_t == 'db', "not testing file storage")
     def test_count(self):

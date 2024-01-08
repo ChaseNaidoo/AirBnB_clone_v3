@@ -94,7 +94,7 @@ class TestFileStorage(unittest.TestCase):
         models.storage.new(user)
         models.storage.save()
         result = models.storage.get(User, user.id)
-        self.assertEqual(result, user, "get method did not return the expected object")
+        self.assertEqual(result, user)
 
     @unittest.skipIf(models.storage_t != 'db', "not testing db storage")
     def test_count(self):

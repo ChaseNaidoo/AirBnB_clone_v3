@@ -95,6 +95,9 @@ def places_search():
     amenities = json_data.get('amenities', [])
     places = storage.all(Place).values()
 
+    if request.get_json == 0:
+        places = storage.all(Place).values()
+
     if states:
         places = [place for place in places if place.city.state_id in states]
 
